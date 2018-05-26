@@ -12,7 +12,7 @@ namespace backend.Controllers
     [Route("api/[controller]")]
     public class StaffController : Controller
     {
-       
+
         private readonly IReliableStateManager stateManager;
 
         private object StaffDictionary;
@@ -64,10 +64,19 @@ namespace backend.Controllers
             return new OkResult();
         }
 
- // DELETE api/values/5
-//       [HttpDelete("{id}")]
-  //      public void Delete(int id)
-    //    {
-     //   }
+        //DELETE api/values/5
+        [HttpDelete("{staff}")]
+        public async Task<IActionResult> Delete(string staff)
+        {
+
+            IReliableDictionary<string, int> StaffDictionary = await this.stateManager.GetOrAddAsync<IReliableDictionary<string, int>>("counts");
+
+            using (ITransaction tx = this.stateManager.CreateTransaction())
+            {
+                await StaffDictionary.TryRemoveAsync(tx, staff);
+                await tx.CommitAsync();
+            }
+            return new OkResult();
+        }
     }
 }

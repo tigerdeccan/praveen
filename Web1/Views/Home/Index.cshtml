@@ -2,11 +2,11 @@
     ViewData["Title"] = "Service Fabric Voting Sample";
 }
 
-<div ng-controller="staff" ng-init="refresh()">
+<div ng-app="staff" ng-controller="StaffController" ng-init="refresh()">
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-8 col-xs-offset-2 text-center">
-                <h2>Service Fabric Voting Sample</h2>
+                <h2>Service Fabric Voting Sample1</h2>
             </div>
         </div>
 
@@ -18,7 +18,7 @@
                     </div>
                     <button id="btnAdd" class="btn btn-default" ng-click="add(item)">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        Add
+                        Add1
                     </button>
                 </form>
             </div>
@@ -33,19 +33,19 @@
                         Click to staff
                     </div>
                 </div>
-                <div class="row top-buffer" ng-repeat="staff in staffs.data">
+                <div class="row top-buffer" ng-repeat="s in data">
                     <div class="col-xs-8">
-                        <button class="btn btn-success text-left btn-block" ng-click="add(staff.key)">
+                        <button class="btn btn-success text-left btn-block" >
                             <span class="pull-left">
-                                {{staff.key}}
+                                {{s.key}}
                             </span>
                             <span class="badge pull-right">
-                                {{staff.value}} staffs
+                                {{s.value}}
                             </span>
                         </button>
                     </div>
                     <div class="col-xs-4">
-                        <button class="btn btn-danger pull-right btn-block" ng-click="remove(staff.key)">
+                        <button class="btn btn-danger pull-right btn-block" ng-click="remove(s.key)">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             Remove
                         </button>
